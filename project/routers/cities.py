@@ -59,8 +59,9 @@ def update_cities_by_id(city_id: int,
     if city is None:
         raise HTTPException(status_code=404, detail="City not found")
 
-    city.name = city_data.name
-    city.additional_info = city_data.additional_info
+    update_data = city_data.model_dump(exclude_unset=True)
+    for key, value in update_data.items():
+        setattr(city, key, value)
 
     db.commit()
     db.refresh(city)
