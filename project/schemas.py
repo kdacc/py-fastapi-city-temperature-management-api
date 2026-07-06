@@ -1,26 +1,29 @@
+from typing import Optional
 from pydantic import BaseModel
 from datetime import datetime
 
 
-class City(BaseModel):
-    id: int
+class CityBase(BaseModel):
     name: str
     additional_info: str
     latitude: float
     longitude: float
 
+
+class CityCreate(CityBase):
+    pass
+
+class CityUpdate(CityBase):
+    name: Optional[str] = None
+    additional_info: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+
+class City(BaseModel):
+    id: int
+
     class Config:
         orm_mode = True
-
-
-class CityCreate(City):
-    name: str
-    additional_info: str
-
-
-class CityUpdate(City):
-    name: str
-    additional_info: str
 
 class Temperature(BaseModel):
     id: int

@@ -1,4 +1,3 @@
-from click import DateTime
 from sqlalchemy import (Column, Integer, String,
                         DateTime, ForeignKey, Float)
 from sqlalchemy.orm import relationship

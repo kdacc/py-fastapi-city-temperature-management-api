@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from database import Base, engine
-from routers import cities, temperatures
+
+from project.database import Base, engine
+from project.routers import cities, temperatures
 
 Base.metadata.create_all(bind=engine)
 
